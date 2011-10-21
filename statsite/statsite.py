@@ -33,7 +33,9 @@ class Statsite(object):
     """
 
     DEFAULT_SETTINGS = {
-        "flush_interval": 10,
+        "flush": { 
+            "interval": 10
+        },
         "aggregator": {},
         "aliveness_check": {
             "enabled": False,
@@ -186,5 +188,5 @@ class Statsite(object):
         if self.timer:
             self.timer.cancel()
 
-        self.timer = threading.Timer(int(self.settings["flush_interval"]), self._on_timer)
+        self.timer = threading.Timer(int(self.settings["flush"]["interval"]), self._on_timer)
         self.timer.start()
